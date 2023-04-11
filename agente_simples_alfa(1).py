@@ -225,7 +225,11 @@ class App():
             if (len(self.mapa.lixos) == 0 and self.agente.x == 19 and self.agente.y == 19):
                 break
 
+inicio = time.time()
 app = App()
+#tempo inicial
 app.loop()
-
-
+#tempo final
+final = time.time()
+print("Tempo de execução: {} segundos".format(final-inicio))
+#Tempo de execução: 65.86064052581787 segundos

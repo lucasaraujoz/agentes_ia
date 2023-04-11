@@ -92,16 +92,12 @@ class App():
         self.drawAgente()
         self.drawLixo()
         print("  ", end='')
-        # for i in range(TAMANHO_AMBIENTE):
-        #     print(f"\033[1;37m{i:2}\033[m", end=' ')  # Usando a formatação ANSI para definir cor e estilo do texto
         print()
-        #print(" +" + "---" * TAMANHO_AMBIENTE + "-+")
         for i in range(TAMANHO_AMBIENTE):
             print(f"\033[1;37m{i:2}\033[m|", end='')  # Usando a formatação ANSI para definir cor e estilo do texto
             for j in range(TAMANHO_AMBIENTE):
                 print(f"{self.mapa.matriz[i][j]:2}", end=' ')
             print("")
-        #print(" +" + "---" * TAMANHO_AMBIENTE + "-+")
     def drawLixo(self):
         for lixo in self.mapa.lixos:
             self.mapa.matriz[lixo.y][lixo.x] = "\033[36m" + "*" + "\033[0;0m" if lixo.valor == "R" else "\033[33m" + "*" + "\033[0;0m"
@@ -170,12 +166,12 @@ class App():
         lista = [
             (self.agente.x - 1, self.agente.y),       # Oeste
             (self.agente.x + 1, self.agente.y),       # Leste
-            (self.agente.x, self.agente.y + 1),       # Norte
-            (self.agente.x, self.agente.y - 1),       # Sul
-            (self.agente.x - 1, self.agente.y + 1),   # Noroeste
-            (self.agente.x + 1, self.agente.y + 1),   # Nordeste
-            (self.agente.x + 1, self.agente.y - 1),   # Sudeste
-            (self.agente.x - 1, self.agente.y - 1),   # Sudoeste
+            # (self.agente.x, self.agente.y + 1),       # Norte
+            # (self.agente.x, self.agente.y - 1),       # Sul
+            # (self.agente.x - 1, self.agente.y + 1),   # Noroeste
+            # (self.agente.x + 1, self.agente.y + 1),   # Nordeste
+            # (self.agente.x + 1, self.agente.y - 1),   # Sudeste
+            # (self.agente.x - 1, self.agente.y - 1),   # Sudoeste
                 ]
         for percepcoes in lista:
             x = percepcoes[0]
@@ -196,14 +192,14 @@ class App():
         elif self.agente.y < 19: #o if e executado primeiro mesmo elif tbm sendo verdadeiro
             self.agente.mover_baixo()
     
-    def retornarPosInicial2(self):
-        if self.agente.x > 0:
-            self.agente.mover_esquerda()
-        elif self.agente.y > 0:
-            self.agente.mover_cima()
-        else:
-            self.goBack=False
-            #self.agente.status=False
+    # def retornarPosInicial2(self):
+    #     if self.agente.x > 0:
+    #         self.agente.mover_esquerda()
+    #     elif self.agente.y > 0:
+    #         self.agente.mover_cima()
+    #     else:
+    #         self.goBack=False
+    #         #self.agente.status=False
     def retornarPosInicial(self):
         if(self.agente.x==self.agente.posicaoLixo[0] and self.agente.y==self.agente.posicaoLixo[1]):
             self.goBack=False
@@ -235,8 +231,15 @@ class App():
             self.drawMap()
             self.draw()
             self.zigZag()
-            input()
+            #input()
             time.sleep(SLEEP)
 
+inicio = time.time()
 app = App()
+#tempo inicial
 app.loop()
+#tempo final
+final = time.time()
+print("Tempo de execução: {} segundos".format(final-inicio))
+
+#Tempo de execução: 25.277822732925415 segundos

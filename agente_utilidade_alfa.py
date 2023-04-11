@@ -236,12 +236,18 @@ class App():
             self.drawMap()
             self.draw()
             self.ir_ate_posicao(self.objetivos[0][0], self.objetivos[0][1])
-            input()
+            #input()
             time.sleep(SLEEP)
             self.ordenar_lista_por_distancia()
             if (len(self.mapa.lixos) == 0 and self.agente.x == 19 and self.agente.y == 19):
                 break
 
 
+inicio = time.time()
 app = App()
+#tempo inicial
 app.loop()
+#tempo final
+final = time.time()
+print("Tempo de execução: {} segundos".format(final-inicio))
+#Tempo de execução: 13.907337665557861 segundos
